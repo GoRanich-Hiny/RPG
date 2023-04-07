@@ -14,6 +14,7 @@ namespace RPG.Combat
         [SerializeField] Weapon defaultWeapon = null;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         Health target;
         float timeSinceLastAttack = Mathf.Infinity;
         Weapon currentWeapon = null;
@@ -22,6 +23,8 @@ namespace RPG.Combat
             EquipWeapon(defaultWeapon);
         }
 =======
+=======
+>>>>>>> parent of 9ea9cfe (18 Stop Attacking Already)
         Transform target;
         float timeSinceLastAttack = 0;
 >>>>>>> parent of 9ea9cfe (18 Stop Attacking Already)
@@ -35,7 +38,11 @@ namespace RPG.Combat
             if (!GetIsInRange())
             {
 <<<<<<< HEAD
+<<<<<<< HEAD
                 GetComponent<Mover>().MoveTo(target.transform.position, 1f);
+=======
+                GetComponent<Mover>().MoveTo(target.position);
+>>>>>>> parent of 9ea9cfe (18 Stop Attacking Already)
 =======
                 GetComponent<Mover>().MoveTo(target.position);
 >>>>>>> parent of 9ea9cfe (18 Stop Attacking Already)
@@ -75,6 +82,7 @@ namespace RPG.Combat
         void Hit()
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             if(target == null) { return; }
 
             if (currentWeapon.HasProjectile())
@@ -95,12 +103,20 @@ namespace RPG.Combat
             Health healthComponent = target.GetComponent<Health>();
             healthComponent.TakeDamage(weaponDamage);
 >>>>>>> parent of 9ea9cfe (18 Stop Attacking Already)
+=======
+            Health healthComponent = target.GetComponent<Health>();
+            healthComponent.TakeDamage(weaponDamage);
+>>>>>>> parent of 9ea9cfe (18 Stop Attacking Already)
         }
 
         private bool GetIsInRange()
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             return Vector3.Distance(transform.position, target.transform.position) < currentWeapon.GetRange();
+=======
+            return Vector3.Distance(transform.position, target.position) < weaponRange;
+>>>>>>> parent of 9ea9cfe (18 Stop Attacking Already)
 =======
             return Vector3.Distance(transform.position, target.position) < weaponRange;
 >>>>>>> parent of 9ea9cfe (18 Stop Attacking Already)
@@ -122,7 +138,10 @@ namespace RPG.Combat
         public void Cancel()
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             StopAttack();
+=======
+>>>>>>> parent of 9ea9cfe (18 Stop Attacking Already)
 =======
 >>>>>>> parent of 9ea9cfe (18 Stop Attacking Already)
             target = null;
