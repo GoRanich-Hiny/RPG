@@ -13,6 +13,7 @@ namespace RPG.Combat
         [SerializeField] Transform rightHandTransform = null;
         [SerializeField] Weapon defaultWeapon = null;
 
+<<<<<<< HEAD
         Health target;
         float timeSinceLastAttack = Mathf.Infinity;
         Weapon currentWeapon = null;
@@ -20,17 +21,24 @@ namespace RPG.Combat
         private void Start() {
             EquipWeapon(defaultWeapon);
         }
+=======
+        Transform target;
+        float timeSinceLastAttack = 0;
+>>>>>>> parent of 9ea9cfe (18 Stop Attacking Already)
 
         private void Update()
         {
             timeSinceLastAttack += Time.deltaTime;
 
             if (target == null) return;
-            if (target.IsDead()) return;
 
             if (!GetIsInRange())
             {
+<<<<<<< HEAD
                 GetComponent<Mover>().MoveTo(target.transform.position, 1f);
+=======
+                GetComponent<Mover>().MoveTo(target.position);
+>>>>>>> parent of 9ea9cfe (18 Stop Attacking Already)
             }
             else
             {
@@ -66,6 +74,7 @@ namespace RPG.Combat
         // Animation Event
         void Hit()
         {
+<<<<<<< HEAD
             if(target == null) { return; }
 
             if (currentWeapon.HasProjectile())
@@ -82,11 +91,19 @@ namespace RPG.Combat
         void Shoot()
         {
             Hit();
+=======
+            Health healthComponent = target.GetComponent<Health>();
+            healthComponent.TakeDamage(weaponDamage);
+>>>>>>> parent of 9ea9cfe (18 Stop Attacking Already)
         }
 
         private bool GetIsInRange()
         {
+<<<<<<< HEAD
             return Vector3.Distance(transform.position, target.transform.position) < currentWeapon.GetRange();
+=======
+            return Vector3.Distance(transform.position, target.position) < weaponRange;
+>>>>>>> parent of 9ea9cfe (18 Stop Attacking Already)
         }
 
         public bool CanAttack(GameObject combatTarget)
@@ -99,12 +116,15 @@ namespace RPG.Combat
         public void Attack(GameObject combatTarget)
         {
             GetComponent<ActionScheduler>().StartAction(this);
-            target = combatTarget.GetComponent<Health>();
+            target = combatTarget.transform;
         }
 
         public void Cancel()
         {
+<<<<<<< HEAD
             StopAttack();
+=======
+>>>>>>> parent of 9ea9cfe (18 Stop Attacking Already)
             target = null;
             GetComponent<Mover>().Cancel();
         }
