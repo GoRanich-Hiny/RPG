@@ -1,6 +1,10 @@
 using UnityEngine;
+<<<<<<< Updated upstream
 using RPG.Attributes;
 using RPG.Control;
+=======
+using RPG.Core;
+>>>>>>> Stashed changes
 
 namespace RPG.Combat
 {

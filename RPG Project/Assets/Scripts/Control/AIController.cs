@@ -5,9 +5,12 @@ using RPG.Combat;
 using RPG.Core;
 using RPG.Movement;
 using UnityEngine;
+<<<<<<< Updated upstream
 using RPG.Attributes;
 using GameDevTV.Utils;
 using UnityEngine.AI;
+=======
+>>>>>>> Stashed changes
 
 namespace RPG.Control
 {
@@ -15,19 +18,26 @@ namespace RPG.Control
     {
         [SerializeField] float chaseDistance = 5f;
         [SerializeField] float suspicionTime = 3f;
+<<<<<<< Updated upstream
         [SerializeField] float agroCooldownTime = 5f;
+=======
+>>>>>>> Stashed changes
         [SerializeField] PatrolPath patrolPath;
         [SerializeField] float waypointTolerance = 1f;
         [SerializeField] float waypointDwellTime = 3f;
         [Range(0,1)]
         [SerializeField] float patrolSpeedFraction = 0.2f;
+<<<<<<< Updated upstream
         [SerializeField] float shoutDistance = 5f;
+=======
+>>>>>>> Stashed changes
 
         Fighter fighter;
         Health health;
         Mover mover;
         GameObject player;
 
+<<<<<<< Updated upstream
         LazyValue<Vector3> guardPosition;
         float timeSinceLastSawPlayer = Mathf.Infinity;
         float timeSinceArrivedAtWaypoint = Mathf.Infinity;
@@ -35,11 +45,20 @@ namespace RPG.Control
         int currentWaypointIndex = 0;
 
         private void Awake() {
+=======
+        Vector3 guardPosition;
+        float timeSinceLastSawPlayer = Mathf.Infinity;
+        float timeSinceArrivedAtWaypoint = Mathf.Infinity;
+        int currentWaypointIndex = 0;
+
+        private void Start() {
+>>>>>>> Stashed changes
             fighter = GetComponent<Fighter>();
             health = GetComponent<Health>();
             mover = GetComponent<Mover>();
             player = GameObject.FindWithTag("Player");
 
+<<<<<<< Updated upstream
             guardPosition = new LazyValue<Vector3>(GetGuardPosition);
             guardPosition.ForceInit();
         }
@@ -60,13 +79,20 @@ namespace RPG.Control
         }
 
         private void Start() {
+=======
+            guardPosition = transform.position;
+>>>>>>> Stashed changes
         }
 
         private void Update()
         {
             if (health.IsDead()) return;
 
+<<<<<<< Updated upstream
             if (IsAggrevated() && fighter.CanAttack(player))
+=======
+            if (InAttackRangeOfPlayer() && fighter.CanAttack(player))
+>>>>>>> Stashed changes
             {
                 AttackBehaviour();
             }
@@ -82,21 +108,31 @@ namespace RPG.Control
             UpdateTimers();
         }
 
+<<<<<<< Updated upstream
         public void Aggrevate()
         {
             timeSinceAggrevated = 0;
         }
 
+=======
+>>>>>>> Stashed changes
         private void UpdateTimers()
         {
             timeSinceLastSawPlayer += Time.deltaTime;
             timeSinceArrivedAtWaypoint += Time.deltaTime;
+<<<<<<< Updated upstream
             timeSinceAggrevated += Time.deltaTime;
+=======
+>>>>>>> Stashed changes
         }
 
         private void PatrolBehaviour()
         {
+<<<<<<< Updated upstream
             Vector3 nextPosition = guardPosition.value;
+=======
+            Vector3 nextPosition = guardPosition;
+>>>>>>> Stashed changes
 
             if (patrolPath != null)
             {
@@ -139,6 +175,7 @@ namespace RPG.Control
         {
             timeSinceLastSawPlayer = 0;
             fighter.Attack(player);
+<<<<<<< Updated upstream
 
             AggrevateNearbyEnemies();
         }
@@ -159,6 +196,14 @@ namespace RPG.Control
         {
             float distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
             return distanceToPlayer < chaseDistance || timeSinceAggrevated < agroCooldownTime;
+=======
+        }
+
+        private bool InAttackRangeOfPlayer()
+        {
+            float distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
+            return distanceToPlayer < chaseDistance;
+>>>>>>> Stashed changes
         }
 
         // Called by Unity

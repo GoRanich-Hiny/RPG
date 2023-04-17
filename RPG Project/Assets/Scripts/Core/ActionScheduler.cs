@@ -15,7 +15,10 @@ namespace RPG.Core
             }
             currentAction = action;
         }
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
         public void CancelCurrentAction()
         {
             StartAction(null);

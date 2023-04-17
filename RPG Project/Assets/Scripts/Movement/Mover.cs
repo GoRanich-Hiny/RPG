@@ -10,7 +10,10 @@ namespace RPG.Movement
     {
         [SerializeField] Transform target;
         [SerializeField] float maxSpeed = 6f;
+<<<<<<< Updated upstream
         [SerializeField] float maxNavPathLength = 40f;
+=======
+>>>>>>> Stashed changes
 
         NavMeshAgent navMeshAgent;
         Health health;
@@ -24,7 +27,12 @@ namespace RPG.Movement
         {
             navMeshAgent.enabled = !health.IsDead();
 
+<<<<<<< Updated upstream
                 UpdateAnimator();
+=======
+            UpdateAnimator();
+            
+>>>>>>> Stashed changes
         }
 
         public void StartMoveAction(Vector3 destination, float speedFraction)
@@ -33,6 +41,7 @@ namespace RPG.Movement
             MoveTo(destination, speedFraction);
         }
 
+<<<<<<< Updated upstream
         public bool CanMoveTo(Vector3 destination)
         {
             NavMeshPath path = new NavMeshPath();
@@ -44,6 +53,8 @@ namespace RPG.Movement
             return true;
         }
 
+=======
+>>>>>>> Stashed changes
         public void MoveTo(Vector3 destination, float speedFraction)
         {
             navMeshAgent.destination = destination;

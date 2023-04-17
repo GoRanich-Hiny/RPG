@@ -1,4 +1,5 @@
 using RPG.Combat;
+using RPG.Core;
 using RPG.Movement;
 using UnityEngine;
 using RPG.Attributes;
@@ -12,6 +13,7 @@ namespace RPG.Control
     public class PlayerController : MonoBehaviour
     {
         Health health;
+<<<<<<< Updated upstream
         ActionStore actionStore;
 
         [System.Serializable]
@@ -32,10 +34,16 @@ namespace RPG.Control
         private void Awake() {
             health = GetComponent<Health>();
             actionStore = GetComponent<ActionStore>();
+=======
+
+        private void Start() {
+            health = GetComponent<Health>();
+>>>>>>> Stashed changes
         }
 
         private void Update()
         {
+<<<<<<< Updated upstream
             if (InteractWithUI()) return;
             if (health.IsDead()) 
             {
@@ -46,6 +54,11 @@ namespace RPG.Control
             UseAbilities();
 
             if (InteractWithComponent()) return;
+=======
+            if (health.IsDead()) return;
+
+            if (InteractWithCombat()) return;
+>>>>>>> Stashed changes
             if (InteractWithMovement()) return;
 
             SetCursor(CursorType.None);
@@ -59,9 +72,23 @@ namespace RPG.Control
             }
             if (EventSystem.current.IsPointerOverGameObject())
             {
+<<<<<<< Updated upstream
                 if (Input.GetMouseButtonDown(0))
                 {
                     isDraggingUI = true;
+=======
+                CombatTarget target = hit.transform.GetComponent<CombatTarget>();
+                if (target == null) continue;
+
+                if (!GetComponent<Fighter>().CanAttack(target.gameObject))
+                {
+                    continue;
+                }
+
+                if (Input.GetMouseButton(0))
+                {
+                    GetComponent<Fighter>().Attack(target.gameObject);
+>>>>>>> Stashed changes
                 }
                 SetCursor(CursorType.UI);
                 return true;
@@ -124,7 +151,11 @@ namespace RPG.Control
 
                 if (Input.GetMouseButton(0))
                 {
+<<<<<<< Updated upstream
                     GetComponent<Mover>().StartMoveAction(target, 1f);
+=======
+                    GetComponent<Mover>().StartMoveAction(hit.point, 1f);
+>>>>>>> Stashed changes
                 }
                 SetCursor(CursorType.Movement);
                 return true;

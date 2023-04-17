@@ -20,6 +20,7 @@ namespace RPG.Combat
         [SerializeField] float autoAttackRange = 4f;
 
         Health target;
+<<<<<<< Updated upstream
         Equipment equipment;
         float timeSinceLastAttack = Mathf.Infinity;
         WeaponConfig currentWeaponConfig;
@@ -44,6 +45,9 @@ namespace RPG.Combat
         {
             currentWeapon.ForceInit();
         }
+=======
+        float timeSinceLastAttack = Mathf.Infinity;
+>>>>>>> Stashed changes
 
         private void Update()
         {
@@ -52,12 +56,15 @@ namespace RPG.Combat
             if (target == null) return;
             if (target.IsDead()) 
             {
+<<<<<<< Updated upstream
                 target = FindNewTargetInRange();
                 if (target == null) return;
             }
 
             if (!GetIsInRange(target.transform))
             {
+=======
+>>>>>>> Stashed changes
                 GetComponent<Mover>().MoveTo(target.transform.position, 1f);
             }
             else
@@ -115,11 +122,16 @@ namespace RPG.Combat
             if (timeSinceLastAttack > timeBetweenAttacks)
             {
                 // This will trigger the Hit() event.
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
                 TriggerAttack();
                 timeSinceLastAttack = 0;
             }
         }
 
+<<<<<<< Updated upstream
         private Health FindNewTargetInRange()
         {
             Health best = null;
@@ -151,12 +163,15 @@ namespace RPG.Combat
             }
         }
 
+=======
+>>>>>>> Stashed changes
         private void TriggerAttack()
         {
             GetComponent<Animator>().ResetTrigger("stopAttack");
             GetComponent<Animator>().SetTrigger("attack");
         }
 
+<<<<<<< Updated upstream
         // Animation Event
         void Hit()
         {
@@ -183,6 +198,20 @@ namespace RPG.Combat
             {
                 target.TakeDamage(gameObject, damage);
             }
+=======
+        public bool CanAttack(GameObject combatTarget)
+        {
+            if(combatTarget == null) return false;
+            Health targetHealth = combatTarget.GetComponent<Health>();
+            return targetHealth != null && !targetHealth.IsDead();          
+        }
+
+        // Animation Event
+        void Hit()
+        {
+            if(target == null) return;
+            target.TakeDamage(weaponDamage);
+>>>>>>> Stashed changes
         }
 
         void Shoot()
@@ -190,6 +219,7 @@ namespace RPG.Combat
             Hit();
         }
 
+<<<<<<< Updated upstream
         private bool GetIsInRange(Transform targetTransform)
         {
             return Vector3.Distance(transform.position, targetTransform.position) < currentWeaponConfig.GetRange();
@@ -207,6 +237,8 @@ namespace RPG.Combat
             return targetToTest != null && !targetToTest.IsDead();
         }
 
+=======
+>>>>>>> Stashed changes
         public void Attack(GameObject combatTarget)
         {
             GetComponent<ActionScheduler>().StartAction(this);
@@ -218,6 +250,12 @@ namespace RPG.Combat
             StopAttack();
             target = null;
             GetComponent<Mover>().Cancel();
+        }
+
+        private void StopAttack()
+        {
+            GetComponent<Animator>().ResetTrigger("attack");
+            GetComponent<Animator>().SetTrigger("stopAttack");
         }
 
         private void StopAttack()
